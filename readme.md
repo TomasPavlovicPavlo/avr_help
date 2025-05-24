@@ -6,7 +6,8 @@
    - **t85** ATtiny85
    - ...
  - -c *programmer-id*, Specify the programmer to be used
-    - **usbtiny** USBtiny simple USB programmer, https://learn.adafruit.com/usbtinyisp
+    - **usbtiny** &emsp;  USBtiny simple USB programmer, https://learn.adafruit.com/usbtinyisp
+    - **wiring** &emsp; for bootloader using STK500 v2 protocol (arduino)
     - ...
 
  - -b *baudrate* Override the RS-232 connection baud rate specified in the respective program-
@@ -49,7 +50,7 @@ having to create a single-byte file or enter terminal mode. If the number specif
 The default is to use auto detection for input files, and raw binary format for
 output files.
 
-### examples
+### examples for USBtiny over ISP
 
 #### read flash binary to file "dump.bin"
 
@@ -85,6 +86,20 @@ avrdude -v -p m2560 -c usbtiny -Uefuse:r:-:b
 
 ```
 avrdude -v -p m2560 -c usbtiny -t
+```
+
+### examples for wiring (over serial) 
+
+#### read flash binary to file "dump.bin"
+
+```
+avrdude  -v -V -patmega2560 -cwiring "-P/dev/ttyACM0" -b115200 -D -Uflash:r:dump.bin:r
+```
+
+#### read hFuse in hexadecimal to console
+
+```
+avrdude  -v -V -patmega2560 -cwiring "-P/dev/ttyACM0" -D -Uhfuse:r:-:h
 ```
 
 ## disassemble avr dump file
