@@ -87,6 +87,6 @@ avrdude -v -p m2560 -c usbtiny -Uefuse:r:-:b
 avrdude -v -p m2560 -c usbtiny -t
 ```
 
-## disassemble
+## disassemble avr dump file
 
 avr-objdump -j .sec1 -d -m avr6 -l -Sz mega2560_dump.hex > mega2560_dis.asm
